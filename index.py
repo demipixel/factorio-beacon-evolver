@@ -60,7 +60,7 @@ def eval_genomes(genomes, config):
   if gen % 10 == 0:
     run_test(best_genome, config)
   gen += 1
-  if gen % WORST_COUNT_CHANGE_GENERATIONS == 0:
+  if gen % WORST_COUNT_STEP_GENERATIONS == 0:
     if worst_count != END_WORST_COUNT:
       worst_count = worst_count + WORST_COUNT_STEP_SIZE
 
