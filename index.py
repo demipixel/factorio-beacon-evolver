@@ -5,6 +5,8 @@ from grid import Grid
 RADIUS = 5
 NUM_GRIDS = 30
 NUM_GENERATIONS = 300
+NUM_PUMPJACKS = 10
+SIZE_OF_GRID = 32
 
 START_WORST_COUNT = 5
 END_WORST_COUNT = 3
@@ -20,7 +22,7 @@ def eval_genomes(genomes, config):
   average = 0.0
   grids = []
   for i in range(0, 20):
-    grids.append(Grid(32, 32, 10))
+    grids.append(Grid(SIZE_OF_GRID, SIZE_OF_GRID, NUM_PUMPJACKS))
   for genome_id, genome in genomes:
     genome.fitness = 1000000
     net = neat.nn.FeedForwardNetwork.create(genome, config)
@@ -64,7 +66,7 @@ def eval_genomes(genomes, config):
 
 def run_test(genome, config):
   net = neat.nn.FeedForwardNetwork.create(genome, config)
-  grid = Grid(32, 32, 10)
+  grid = Grid(SIZE_OF_GRID, SIZE_OF_GRID, NUM_PUMPJACKS)
   for x in range(0, grid.width - 3):
     for y in range(0, grid.height - 3):
       input = grid.getInput(x + 1, y + 1, RADIUS)
@@ -75,7 +77,7 @@ def run_test(genome, config):
         grid.placeBeacon(x, y)
   
   if grid.getFitness() >= 0:
-    print("Best test fitness: "+str(float(grid.getFitness())/10)+" beacons/pumpjack")
+    print("Best test fitness: "+str(float(grid.getFitness())/NUM_PUMPJACKS)+" beacons/pumpjack")
   else:
     print("Best test fitness: A pipe could not find a path out of the beacons, negative score.")
   grid.getBlueprint()

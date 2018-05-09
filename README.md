@@ -30,6 +30,8 @@ At the top of index.py, we have a few options.
 - RADIUS: The radius the algorithm can see from a location to determine if a beacon should be placed at the center. The diameter (length) of this square is `(2*RADIUS + 1)^2`. **If you change this**, you'll need to change `num_inputs` in the config to be `diameter*2 - 18`, which is `((2*RADIUS + 1)^2)*2 - 18`
 - NUM_GRIDS: This many grids are generated and each individual in the population is tested on the same set of grids. Because we are trying to maximize the worst scores, the higher this number is, the more grids will be tested and therefore everyone in the population is much more likely to get a lower score. With a lower number, however, fitness of a given genome may become innacurate. Be aware, the simulation takes longer to run the higher you raise this.
 - NUM_GENERATIONS: The number of generations to run before stopping
+- NUM_PUMPJACKS: The number of pumpjacks to be placed on the grid
+- SIZE_OF_GRID: The width and height of the grid that genomes are tested on
 
 ### Worst Count
 
